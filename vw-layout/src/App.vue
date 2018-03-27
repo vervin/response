@@ -2,9 +2,11 @@
   <div id="app">
     <img src="./assets/logo.png">
     <div class="box ignore"></div>
-    <div aspectratio> <div aspectratio-content></div> </div>
-
-    <div aspectratio w-188-246 class="color"></div>
+    <div aspectratio w-188-246>
+      <div aspectratio-content></div>
+    </div>
+     <div class="example"></div> 
+     <div class="my-viewport-units-using-thingie"></div>
     <!-- <router-view/> -->
   </div>
 </template>
@@ -24,28 +26,12 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
-.test {
-  border: 0.5px solid black;
-  border-bottom-width: 4px;
-  font-size: 14px;
-  line-height: 20px;
-  position: relative;
-}
-[w-188-246] {
-  width: 188px;
-}
-.ignore {
+.ignone {
   margin: 10px;
-  background-color: red;
 }
 .box {
   width: 180px;
   height: 300px;
-  border: 1px solid #333
-}
-.hairlines {
-  border-bottom: 0.5px solid red;
 }
 
 [aspectratio] {
@@ -67,7 +53,28 @@ export default {
   width: 100%;
   height: 100%;
 }
+[w-188-246] {
+  aspect-ratio: "188:246";
+}
+[w-188-246] {
+  width: 188px;
+  background-color: #f00;
+}
 
-[w-188-246] { aspect-ratio: '188:246'; }
+@svg 1px-border {
+  height: 2px;
+  @rect {
+    fill: var(--color, black);
+    width: 100%;
+    height: 50%;
+  }
+}
+.example {
+  border: 1px solid transparent;
+  border-image: svg(1px-border param(--color #00b1ff)) 2 2 stretch;
+}
+
+
+.my-viewport-units-using-thingie { width: 50vmin; height: 50vmax; top: calc(50vh - 100px); left: calc(50vw - 100px); /* hack to engage viewport-units-buggyfill */ }
 
 </style>
